@@ -13,6 +13,10 @@
 		5DA2BAB228217493006D9673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DA2BAB028217493006D9673 /* Main.storyboard */; };
 		5DA2BAB428217496006D9673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DA2BAB328217496006D9673 /* Assets.xcassets */; };
 		5DA2BAB728217496006D9673 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DA2BAB528217496006D9673 /* LaunchScreen.storyboard */; };
+		5DA2BAC128218498006D9673 /* EnterNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2BAC028218498006D9673 /* EnterNumberViewController.swift */; };
+		5DA2BAC428218C3E006D9673 /* CompCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2BAC328218C3E006D9673 /* CompCheckViewController.swift */; };
+		5DB8618F282C2004008E032E /* MyCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8618E282C2004008E032E /* MyCheckViewController.swift */; };
+		5DB86193282C2207008E032E /* FinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB86192282C2207008E032E /* FinishViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		5DA2BAB328217496006D9673 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DA2BAB628217496006D9673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DA2BAB828217496006D9673 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DA2BAC028218498006D9673 /* EnterNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNumberViewController.swift; sourceTree = "<group>"; };
+		5DA2BAC328218C3E006D9673 /* CompCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompCheckViewController.swift; sourceTree = "<group>"; };
+		5DB8618E282C2004008E032E /* MyCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCheckViewController.swift; sourceTree = "<group>"; };
+		5DB86192282C2207008E032E /* FinishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +66,57 @@
 			children = (
 				5DA2BAAA28217493006D9673 /* AppDelegate.swift */,
 				5DA2BAAC28217493006D9673 /* SceneDelegate.swift */,
-				5DA2BAAE28217493006D9673 /* ViewController.swift */,
+				5DA2BABE28218173006D9673 /* StartModule */,
+				5DA2BABF28218477006D9673 /* EnterNumberModule */,
+				5DA2BAC228218C25006D9673 /* CompCheckModule */,
+				5DB86190282C2024008E032E /* MyCheckModule */,
+				5DB86191282C21DC008E032E /* FinishModule */,
 				5DA2BAB028217493006D9673 /* Main.storyboard */,
 				5DA2BAB328217496006D9673 /* Assets.xcassets */,
 				5DA2BAB528217496006D9673 /* LaunchScreen.storyboard */,
 				5DA2BAB828217496006D9673 /* Info.plist */,
 			);
 			path = TestTask;
+			sourceTree = "<group>";
+		};
+		5DA2BABE28218173006D9673 /* StartModule */ = {
+			isa = PBXGroup;
+			children = (
+				5DA2BAAE28217493006D9673 /* ViewController.swift */,
+			);
+			path = StartModule;
+			sourceTree = "<group>";
+		};
+		5DA2BABF28218477006D9673 /* EnterNumberModule */ = {
+			isa = PBXGroup;
+			children = (
+				5DA2BAC028218498006D9673 /* EnterNumberViewController.swift */,
+			);
+			path = EnterNumberModule;
+			sourceTree = "<group>";
+		};
+		5DA2BAC228218C25006D9673 /* CompCheckModule */ = {
+			isa = PBXGroup;
+			children = (
+				5DA2BAC328218C3E006D9673 /* CompCheckViewController.swift */,
+			);
+			path = CompCheckModule;
+			sourceTree = "<group>";
+		};
+		5DB86190282C2024008E032E /* MyCheckModule */ = {
+			isa = PBXGroup;
+			children = (
+				5DB8618E282C2004008E032E /* MyCheckViewController.swift */,
+			);
+			path = MyCheckModule;
+			sourceTree = "<group>";
+		};
+		5DB86191282C21DC008E032E /* FinishModule */ = {
+			isa = PBXGroup;
+			children = (
+				5DB86192282C2207008E032E /* FinishViewController.swift */,
+			);
+			path = FinishModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +190,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA2BAC128218498006D9673 /* EnterNumberViewController.swift in Sources */,
 				5DA2BAAF28217493006D9673 /* ViewController.swift in Sources */,
 				5DA2BAAB28217493006D9673 /* AppDelegate.swift in Sources */,
+				5DB86193282C2207008E032E /* FinishViewController.swift in Sources */,
+				5DA2BAC428218C3E006D9673 /* CompCheckViewController.swift in Sources */,
 				5DA2BAAD28217493006D9673 /* SceneDelegate.swift in Sources */,
+				5DB8618F282C2004008E032E /* MyCheckViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
