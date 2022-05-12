@@ -7,11 +7,12 @@
 
 import UIKit
 
-class EnterNumberViewController: UIViewController {
-
+class EnterNumberViewController: UIViewController, UITextFieldDelegate {
+    
     var textField = UITextField()
     var button = UIButton()
-
+    var number = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI()
@@ -31,9 +32,13 @@ class EnterNumberViewController: UIViewController {
         textField.keyboardType = .numberPad
         textField.borderStyle = .roundedRect
         textField.placeholder = "enter number"
+        textField.addTarget(nil, action: #selector(EnterNumberViewController.edit), for: .allEvents)
         button.setTitle("Start", for: .normal)
         button.backgroundColor = .blue
         button.addTarget(nil, action: #selector(EnterNumberViewController.check), for: .touchUpInside)
+        
+        button.alpha = 0.5
+        button.isUserInteractionEnabled = false
         
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: view.topAnchor, constant: 65),
@@ -49,9 +54,20 @@ class EnterNumberViewController: UIViewController {
     }
     
     @objc func check() {
-        let VC = CompCheckViewController()
+        let number = Int(textField.text ?? "0") ?? 0
+        let VC = CompCheckViewController(number: number)
         VC.modalPresentationStyle = .fullScreen
         present(VC, animated: true, completion: nil)
     }
-
+    
+    @objc func edit() {
+        if textField.text == "" {
+            button.alpha = 0.5
+            button.isUserInteractionEnabled = false
+        } else {
+            button.alpha = 1
+            button.isUserInteractionEnabled = true
+        }
+    }
+    
 }
