@@ -13,14 +13,18 @@ class CompCheckViewController: UIViewController {
     var resultLabel = UILabel()
     var buttonBigger = UIButton()
     var buttonSmaller = UIButton()
-    var buttonEqual = UIButton()
     var stackView = UIStackView()
-    private var number = Int()
-    private var compCheckCurrentNumber = Int()
+    private var userNumber = Int()
+    private var leftNumber = 1
+    private var rightNumber = 100
+    private var compNumber = Int()
+    private var attempts = Int()
+    private var compBrainArray = [Int]()
+    
     
     init(number: Int) {
         super.init(nibName: nil, bundle: nil)
-        self.number = number
+        self.userNumber = number
     }
     
     required init?(coder: NSCoder) {
@@ -43,10 +47,10 @@ class CompCheckViewController: UIViewController {
         stackView.spacing = 5
         buttonBigger.addTarget(nil, action: #selector(CompCheckViewController.biggerCompCheckNumber), for: .touchUpInside)
         buttonSmaller.addTarget(nil, action: #selector(CompCheckViewController.smallerCompCheckNumber), for: .touchUpInside)
-        buttonBigger.setTitle(">", for: .normal)
-        buttonSmaller.setTitle("<", for: .normal)
+        buttonBigger.setTitle("Больше", for: .normal)
+        buttonSmaller.setTitle("Меньше", for: .normal)
         
-        for s in [buttonEqual, buttonSmaller, buttonBigger] {
+        for s in [buttonSmaller, buttonBigger] {
             s.backgroundColor = .blue
             stackView.addArrangedSubview(s)
         }
@@ -74,28 +78,48 @@ class CompCheckViewController: UIViewController {
         ])
     }
     
-    @objc func tap() {
-        let VC = MyCheckViewController()
-        VC.modalPresentationStyle = .fullScreen
-        present(VC, animated: true, completion: nil)
-    }
-    
     func compCheckNumber() {
-        let number = Int.random(in: 1...100)
-        compCheckCurrentNumber = number
-        resultLabel.text = "\(number)"
+        compNumber = Int.random(in: leftNumber...rightNumber)
+    counter: for _ in compBrainArray {
+        if compBrainArray.contains(compNumber) {
+                compNumber = Int.random(in: leftNumber...rightNumber)
+                continue counter
+            }
+        }
+        compBrainArray.append(compNumber)
+        
+        attempts += 1
+        resultLabel.text = "\(compNumber)"
+        print("загаданное \(userNumber), предлагаемое \(compNumber), \(leftNumber)...\(rightNumber)")
+        print("Мозг: \(compBrainArray)")
+        if compNumber == userNumber {
+            self.present(showWinAlert(), animated: true, completion: nil)
+        }
     }
     
     @objc func biggerCompCheckNumber() {
-        let number = Int.random(in: compCheckCurrentNumber...100)
-        compCheckCurrentNumber = number
-        resultLabel.text = "\(number)"
+        if userNumber > compNumber {
+            leftNumber = compNumber
+            compCheckNumber()
+        }
     }
     
     @objc func smallerCompCheckNumber() {
-        let number = Int.random(in: 1...compCheckCurrentNumber)
-        compCheckCurrentNumber = number
-        resultLabel.text = "\(number)"
+        if userNumber < compNumber {
+            rightNumber = compNumber
+            compCheckNumber()
+        }
+    }
+    
+    func showWinAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "Угадал", message: "Кол-во попыток: \(attempts)", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Продолжить", style: .default) { action in
+            let VC = MyCheckViewController()
+            VC.modalPresentationStyle = .fullScreen
+            self.present(VC, animated: true, completion: nil)
+        }
+        alert.addAction(action)
+        return alert
     }
     
 }
