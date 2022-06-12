@@ -13,11 +13,25 @@ class FinishViewController: UIViewController {
     var myScoreLabel = UILabel()
     var compScoreLabel = UILabel()
     var winnerLabel = UILabel()
-
+    
+    init(userAttempts: Int, compAttempts: Int) {
+        super.init(nibName: nil, bundle: nil)
+        self.compScoreLabel.text = "Попытки компьютера: \(compAttempts)"
+        self.myScoreLabel.text = "Мои попытки: \(userAttempts)"
+        if userAttempts > compAttempts {
+            winnerLabel.text = "Комп выиграл"
+        } else {
+            winnerLabel.text = "Ты выиграл"
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI()
-        
     }
     
     func createUI() {
@@ -27,11 +41,6 @@ class FinishViewController: UIViewController {
             view.addSubview(i)
         }
         view.backgroundColor = .white
-        
-        scoreLabel.text = "Score:"
-        myScoreLabel.text = "1"
-        compScoreLabel.text = "2"
-        winnerLabel.text = "you win"
         
         NSLayoutConstraint.activate([
             scoreLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 65),

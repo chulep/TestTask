@@ -114,7 +114,7 @@ class CompCheckViewController: UIViewController {
     func showWinAlert() -> UIAlertController {
         let alert = UIAlertController(title: "Угадал", message: "Кол-во попыток: \(attempts)", preferredStyle: .alert)
         let action = UIAlertAction(title: "Продолжить", style: .default) { action in
-            let VC = MyCheckViewController()
+            let VC = MyCheckViewController(compAttempts: self.attempts)
             VC.modalPresentationStyle = .fullScreen
             self.present(VC, animated: true, completion: nil)
         }
