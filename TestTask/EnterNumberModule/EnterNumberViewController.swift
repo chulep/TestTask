@@ -12,11 +12,16 @@ class EnterNumberViewController: UIViewController, UITextFieldDelegate {
     var textField = UITextField()
     var button = UIButton()
     var number = Int()
+    private var keyboardIsHiddden = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         createUI()
         // Do any additional setup after loading the view.
+    }
+    
+    deinit {
+        //нужно потереть нотификации
     }
     
     func createUI() {
@@ -51,6 +56,20 @@ class EnterNumberViewController: UIViewController, UITextFieldDelegate {
             button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 1/6),
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { show in
+            self.button.frame.origin.y -= 150
+        }
+        
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { hide in
+            self.button.frame.origin.y += 150
+        }
+    }
+    
+    @objc func willShow(_ notification: Notification) {
+        guard let keyboardHeight = ((notification.userInfo! as NSDictionary).object(forKey: UIResponder.keyboardFrameBeginUserInfoKey) as AnyObject).cgRectValue else {
+                return
+            }
     }
     
     @objc func check() {

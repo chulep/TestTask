@@ -13,6 +13,7 @@ class FinishViewController: UIViewController {
     var myScoreLabel = UILabel()
     var compScoreLabel = UILabel()
     var winnerLabel = UILabel()
+    var button = UIButton()
     
     init(userAttempts: Int, compAttempts: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -40,6 +41,13 @@ class FinishViewController: UIViewController {
             i.textAlignment = .center
             view.addSubview(i)
         }
+        button.backgroundColor = .blue
+        button.setTitle("Новая игра", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(nextGame), for: .allEvents)
+        view.addSubview(button)
+        
+        
         view.backgroundColor = .white
         
         NSLayoutConstraint.activate([
@@ -48,21 +56,32 @@ class FinishViewController: UIViewController {
             scoreLabel.heightAnchor.constraint(equalTo: scoreLabel.widthAnchor, multiplier: 1/6),
             scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            myScoreLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 65),
+            myScoreLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 20),
             myScoreLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 2/3),
             myScoreLabel.heightAnchor.constraint(equalTo: myScoreLabel.widthAnchor, multiplier: 1/6),
             myScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            compScoreLabel.topAnchor.constraint(equalTo: myScoreLabel.bottomAnchor, constant: 65),
+            compScoreLabel.topAnchor.constraint(equalTo: myScoreLabel.bottomAnchor, constant: 20),
             compScoreLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 2/3),
             compScoreLabel.heightAnchor.constraint(equalTo: compScoreLabel.widthAnchor, multiplier: 1/6),
             compScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            winnerLabel.topAnchor.constraint(equalTo: compScoreLabel.bottomAnchor, constant: 65),
+            winnerLabel.topAnchor.constraint(equalTo: compScoreLabel.bottomAnchor, constant: 20),
             winnerLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 2/3),
             winnerLabel.heightAnchor.constraint(equalTo: winnerLabel.widthAnchor, multiplier: 1/6),
             winnerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -165),
+            button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 2/3),
+            button.heightAnchor.constraint(equalTo: scoreLabel.widthAnchor, multiplier: 1/6),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    @objc func nextGame() {
+        let VC = EnterNumberViewController()
+        VC.modalPresentationStyle = .fullScreen
+        present(VC, animated: true, completion: nil)
     }
     
 }

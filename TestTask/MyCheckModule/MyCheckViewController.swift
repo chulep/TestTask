@@ -45,14 +45,14 @@ class MyCheckViewController: UIViewController {
         view.backgroundColor = .white
         textField.keyboardType = .numberPad
         textField.borderStyle = .roundedRect
-        textField.placeholder = "enter number"
+        textField.placeholder = "введите число"
         textField.addTarget(nil, action: #selector(edit), for: .allEvents)
         button.setTitle("Угадать", for: .normal)
         button.backgroundColor = .blue
         button.addTarget(nil, action: #selector(EnterNumberViewController.check), for: .touchUpInside)
         button.alpha = 0.5
         resultLabel.textAlignment = .center
-        resultLabel.text = "Введите предполагаемый номер"
+        resultLabel.text = "Введите предполагаемое число"
         allertLabel.text = ""
         allertLabel.textAlignment = .left
         allertLabel.textColor = .red
